@@ -14,16 +14,6 @@
 - Rust (stable)
 - Cargo (Rust's package manager)
 
-## Installation
-
-To use the `drawing` library in your Rust project, add it to your `Cargo.toml`:
-
-```toml
-[dependencies]
-drawing = "0.1.0"  
-```
-
-
 # Drawing
 
 **Drawing** is a simple Rust library for creating and manipulating basic shapes on a raster image. It allows you to draw points, lines, rectangles, triangles, and circles with customizable colors and sizes.
