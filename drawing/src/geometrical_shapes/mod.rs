@@ -159,7 +159,7 @@ impl Circle {
     pub fn random(width: i32, height: i32) -> Self {
         let center = Point::random(width, height);
         let mut rng = rand::thread_rng();
-        let radius = rng.gen_range(10..50);
+        let radius = rng.gen_range(10..500);
         let color = Color::rgb(rng.r#gen(), rng.r#gen(), rng.r#gen());
         Circle::new(center, radius, color)
     }
