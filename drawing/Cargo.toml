@@ -4,5 +4,5 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-raster = "0.2.0"
+raster = {git="http://github.com/bernotieno/raster.git"}
 rand = "0.8"
