@@ -85,7 +85,7 @@ impl Drawable for Line {
     }
 
     fn color(&self) -> Color {
-        Color::rgb(0, 255, 0)
+        Color::rgb(225, 255, 0)
     }
 }
 
@@ -148,18 +148,20 @@ impl Drawable for Triangle {
 pub struct Circle {
     pub center: Point,
     pub radius: i32,
+    pub color: Color,
 }
 
 impl Circle {
-    pub fn new(center: Point, radius: i32) -> Self {
-        Self { center, radius }
+    pub fn new(center: Point, radius: i32, color: Color) -> Self {
+        Self { center, radius, color }
     }
 
     pub fn random(width: i32, height: i32) -> Self {
         let center = Point::random(width, height);
         let mut rng = rand::thread_rng();
         let radius = rng.gen_range(10..50);
-        Circle::new(center, radius)
+        let color = Color::rgb(rng.r#gen(), rng.r#gen(), rng.r#gen());
+        Circle::new(center, radius, color)
     }
 }
 
@@ -200,6 +202,6 @@ impl Drawable for Circle {
     }
 
     fn color(&self) -> Color {
-        Color::rgb(255, 0, 255)
+        self.color.clone()
     }
 }
