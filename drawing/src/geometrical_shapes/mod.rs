@@ -118,3 +118,29 @@ impl Drawable for Rectangle {
         Color::rgb(0, 0, 255)
     }
 }
+
+// TRIANGLE
+pub struct Triangle {
+    pub a: Point,
+    pub b: Point,
+    pub c: Point,
+}
+
+impl Triangle {
+    pub fn new(a: &Point, b: &Point, c: &Point) -> Self {
+        Self { a: a.clone(), b: b.clone(), c: c.clone() }
+    }
+}
+
+impl Drawable for Triangle {
+    fn draw(&self, image: &mut Image) {
+        Line::new(self.a.clone(), self.b.clone()).draw(image);
+        Line::new(self.b.clone(), self.c.clone()).draw(image);
+        Line::new(self.c.clone(), self.a.clone()).draw(image);
+    }
+
+    fn color(&self) -> Color {
+        Color::rgb(255, 255, 0)
+    }
+}
+
