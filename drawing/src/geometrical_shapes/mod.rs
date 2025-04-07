@@ -144,3 +144,62 @@ impl Drawable for Triangle {
     }
 }
 
+// CIRCLE
+pub struct Circle {
+    pub center: Point,
+    pub radius: i32,
+}
+
+impl Circle {
+    pub fn new(center: Point, radius: i32) -> Self {
+        Self { center, radius }
+    }
+
+    pub fn random(width: i32, height: i32) -> Self {
+        let center = Point::random(width, height);
+        let mut rng = rand::thread_rng();
+        let radius = rng.gen_range(10..50);
+        Circle::new(center, radius)
+    }
+}
+
+impl Drawable for Circle {
+    fn draw(&self, image: &mut Image) {
+        let Point { x: cx, y: cy } = self.center;
+        let r = self.radius;
+
+        let mut x = r;
+        let mut y = 0;
+        let mut err = 0;
+
+        while x >= y {
+            let points = [
+                (cx + x, cy + y),
+                (cx + y, cy + x),
+                (cx - y, cy + x),
+                (cx - x, cy + y),
+                (cx - x, cy - y),
+                (cx - y, cy - x),
+                (cx + y, cy - x),
+                (cx + x, cy - y),
+            ];
+
+            for (px, py) in points {
+                image.display(px, py, self.color());
+            }
+
+            y += 1;
+            if err <= 0 {
+                err += 2 * y + 1;
+            }
+            if err > 0 {
+                x -= 1;
+                err -= 2 * x + 1;
+            }
+        }
+    }
+
+    fn color(&self) -> Color {
+        Color::rgb(255, 0, 255)
+    }
+}
